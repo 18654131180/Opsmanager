@@ -1,0 +1,55 @@
+ <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          </button>
+          <a class="navbar-brand" href="{%url 'cmdb:index'%}">学习笔记</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{%url 'cmdb:index'%}">主题</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+			<!--如果用户完成登录,此方法是django自带的认证类方法 -->
+			{%if user.is_authenticated %}
+			<li><a>Hello,{{user.username}}.</a></li>
+            <li class="active"><a href="{%url 'users:logout'%}">注销</a></li>
+			{% else %}
+            <li class="active"><a href="{%url 'users:register'%}">注册</a></li>
+            <li class="active"><a href="{%url 'users:login'%}">登录</a></li>
+			{%endif%}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+
+         <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>公司名称</th>
+                  <th>联系人</th>
+                  <th>手机号</th>
+                  <th>项目名称</th>
+                  <th>账号</th>
+                  <th>密码</th>
+                  <th>余额</th>
+                  <th>云服务商</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for company in companys %}
+                <tr>
+                  <td>{{ company.name }}</td>
+                  <td>{{ company.contactsusr }}</td>
+                  <td>{{ company.phonenumber }}</td>
+                  <td>{{ company.projectname }}</td>
+                  <td>{{ company.account }}</td>
+                  <td>{{ company.password }}</td>
+                  <td>{{ company.balance }}</td>
+                  <td>{{ company.Cspname }}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>

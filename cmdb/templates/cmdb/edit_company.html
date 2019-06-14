@@ -1,0 +1,10 @@
+{% extends "ops/base.html" %}
+{% block content %}
+<p><a href="{%url 'cmdb:index'%}">{{company.name}}</a></p>
+<p>编辑公司</p>
+<form action="{%url 'cmdb:edit_company' company.id%}" method="post">
+	{% csrf_token%}
+	{{form.as_p}}
+	<button name='submit'>保存</button>
+</form>
+{% endblock content %}
