@@ -1,0 +1,5 @@
+Django==1.11.20
+django-bootstrap3==11.0.0
+python-dateutil==2.8.0
+pytz==2019.1
+six==1.12.0
