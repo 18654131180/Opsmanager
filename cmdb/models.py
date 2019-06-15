@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from dateutil.parser import parse
+import time
+daytime=time.strftime('%Y-%m-%d',time.localtime(time.time()))
 class Csp(models.Model):
     """定义云服务商"""
     owner = models.ForeignKey(User)
@@ -54,6 +56,12 @@ class Servers(models.Model):
     area=models.CharField(max_length=10,verbose_name='地区')
     expiration_time=models.DateField(verbose_name='到期时间')
     company=models.ForeignKey(Company,default=1)
+
+#定义一个方法，判断数据库日期比当前日期是否在5天以内，在模板里可以直接以.is_expiration做条件判断
+    @property
+    def is_expiration(self):
+        if (parse(str(self.expiration_time)) - parse(daytime)).days >= 5:
+            return True
     class Meta:
         verbose_name_plural = "服务器"
     def __str__(self):

@@ -4,7 +4,9 @@ from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .models import *
 from .forms import *
-
+from dateutil.parser import parse
+import time
+daytime=time.strftime('%Y-%m-%d',time.localtime(time.time()))
 
 @login_required
 def index(request):
@@ -65,8 +67,11 @@ def del_company(request, company_id):
 def showservers(request):
     '''显示服务器信息'''
     servers = Servers.objects.all()
-    context = {"servers": servers}
+    daytime=time.strftime('%Y-%m-%d',time.localtime(time.time()))
+    context = {"servers": servers,'daytime':daytime}
     return render(request, 'cmdb/server.html', context)
+
+
 
 @login_required
 def edit_server(request, server_id):

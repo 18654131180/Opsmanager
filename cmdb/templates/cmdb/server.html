@@ -28,6 +28,7 @@
                   <th>远程端口</th>
                   <th>地区</th>
                   <th>到期时间</th>
+                  <th>即将到期</th>
                   <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp操作</th>
                 </tr>
               </thead>
@@ -46,6 +47,11 @@
                   <td>{{ server.port }}</td>
                   <td>{{ server.area }}</td>
                   <td>{{ server.expiration_time }}</td>
+                    {% if server.is_expiration %}
+                    <td>否</td>
+                    {% else %}
+                    <td>是</td>
+                    {% endif %}
                   <td><a  class="btn btn-primary btn-xs"  href="{% url 'cmdb:edit_server' server.id %}">编辑</a>
                       <a  class="btn btn-info btn-xs"  href="{% url 'cmdb:new_server'%}">增加</a>
                       <a  class="btn btn-danger btn-xs"  href="{% url 'cmdb:del_server' server.id %}">删除</a>
