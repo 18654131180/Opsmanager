@@ -14,8 +14,8 @@
 
         <div >
           <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
+            <table class="table table-hover">
+              <thead class="text-center">
                 <tr>
                   <th>公司名称</th>
                   <th>联系人</th>
@@ -25,7 +25,7 @@
                   <th>密码</th>
                   <th>余额</th>
                   <th>云服务商</th>
-                  <th>编辑</th>
+                  <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp操作</th>
                 </tr>
               </thead>
               <tbody>
@@ -39,7 +39,10 @@
                   <td>{{ company.password }}</td>
                   <td>{{ company.balance }}</td>
                   <td>{{ company.Cspname }}</td>
-                  <td><a  class="btn btn-primary btn-xs"  href="{% url 'cmdb:edit_company' company.id %}">编辑</a></td>
+                  <td><a  class="btn btn-primary btn-xs"  href="{% url 'cmdb:edit_company' company.id %}">编辑</a>
+                      <a  class="btn btn-info btn-xs"  href="{% url 'cmdb:new_company'%}">增加</a>
+                      <a  class="btn btn-danger btn-xs"  href="{% url 'cmdb:del_company' company.id %}">删除</a>
+                  </td>
                 </tr>
               {% endfor %}
               </tbody>
