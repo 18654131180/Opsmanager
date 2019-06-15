@@ -14,7 +14,7 @@
 
         <div >
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-hover">
               <thead class="text-center">
                 <tr>
                   <th>公司名称</th>
@@ -41,7 +41,7 @@
                   <td>{{ company.Cspname }}</td>
                   <td><a  class="btn btn-primary btn-xs"  href="{% url 'cmdb:edit_company' company.id %}">编辑</a>
                       <a  class="btn btn-info btn-xs"  href="{% url 'cmdb:new_company'%}">增加</a>
-                      <a  class="btn btn-danger btn-xs"  href="#">删除</a>
+                      <a  class="btn btn-danger btn-xs"  href="{% url 'cmdb:del_company' company.id %}">删除</a>
                   </td>
                 </tr>
               {% endfor %}
