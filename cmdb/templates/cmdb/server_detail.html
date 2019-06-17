@@ -55,6 +55,7 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
+                        <th>所属公司</th>
                         <th>角色</th>
                         <th>用途</th>
                         <th>公网</th>
@@ -74,6 +75,7 @@
                     <tbody>
                     {% for server in servers %}
                         <tr>
+                            <td>{{ server.company.name }}</td>
                             <td>{{ server.roles }}</td>
                             <td>{{ server.usage }}</td>
                             <td>{{ server.pub_ipaddress }}</td>
