@@ -25,7 +25,7 @@ class Group(models.Model):
 
 class Company(models.Model):
     """定义公司名称"""
-    name=models.CharField(max_length=25,verbose_name='公司名称')
+    name=models.CharField(max_length=25,verbose_name='公司名称',unique=True)
     contactsusr=models.CharField(max_length=10,verbose_name='联系人')
     phonenumber=models.IntegerField(verbose_name='联系人手机号')
     projectname=models.CharField(max_length=20,verbose_name='项目名')
