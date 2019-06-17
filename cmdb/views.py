@@ -25,6 +25,13 @@ def showcompanys(request):
 
 
 @login_required
+def show_company(request,company_id):
+    '''显示公司下的服务器'''
+    servers = Servers.objects.filter(company_id=company_id)
+    context = {"servers": servers}
+    return render(request, 'cmdb/server.html', context)
+
+@login_required
 def edit_company(request, company_id):
     """实现编辑公司"""
     company = Company.objects.get(id=company_id)

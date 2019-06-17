@@ -53,11 +53,14 @@
                     <td>是</td>
                     {% endif %}
                   <td><a  class="btn btn-primary btn-xs"  href="{% url 'cmdb:edit_server' server.id %}">编辑</a>
-                      <a  class="btn btn-info btn-xs"  href="{% url 'cmdb:new_server'%}">增加</a>
+
                       <a  class="btn btn-danger btn-xs"  href="{% url 'cmdb:del_server' server.id %}">删除</a>
                   </td>
                 </tr>
               {% endfor %}
+              <tr>
+                  <td><a  class="btn btn-success"  href="{% url 'cmdb:new_server'%}">增加</a></td>
+              </tr>
               </tbody>
             </table>
           </div>
