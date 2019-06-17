@@ -6,6 +6,8 @@ from . import views
 urlpatterns = [
     # 编辑公司
     url(r'edit_company/(?P<company_id>\d+)/$', views.edit_company, name='edit_company'),
+    # 展示公司详情
+    url(r'show_company/(?P<company_id>\d+)/$', views.show_company, name='show_company'),
     # 增加公司
     url(r'new_company', views.new_company, name='new_company'),
     # 删除公司
