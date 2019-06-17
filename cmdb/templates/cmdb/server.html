@@ -1,70 +1,110 @@
-{% extends "ops/base.html" %}
-
-{% block content %}
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" ,initial-scale=1>
+</head>
+<title>{% block title %}{% endblock title %}自动化运维管理后台</title>
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
-      <div class="row">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'ops:index' %}">自动化运维后台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'cmdb:index' %}">CMDB后台</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!--如果用户完成登录,此方法是django自带的认证类方法 -->
+                {% if user.is_authenticated %}
+                    <li><a>Hello,{{ user.username }}.</a></li>
+                    <li class="active"><a href="{% url 'users:logout' %}">注销</a></li>
+                {% else %}
+                    <li class="active"><a href="{% url 'users:register' %}">注册</a></li>
+                    <li class="active"><a href="{% url 'users:login' %}">登录</a></li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <!-- Single button -->
             <ul class="nav nav-pills nav-stacked">
-              <li role="presentation" ><a href="{% url 'cmdb:company' %}">公司管理</a></li>
-              <li role="presentation" class="active"><a href="{%url 'cmdb:server'  %}">服务器管理</a></li>
-              <li role="presentation"><a href="#">项目管理</a></li>
+                <li role="presentation"><a href="{% url 'cmdb:company' %}">公司管理</a></li>
+                <li role="presentation" class="active"><a href="{% url 'cmdb:server' %}">服务器管理</a></li>
+                <li role="presentation"><a href="#">项目管理</a></li>
             </ul>
         </div>
-        <div >
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>角色</th>
-                  <th>用途</th>
-                  <th>公网</th>
-                  <th>私网</th>
-                  <th>月费用</th>
-                  <th>密码</th>
-                  <th>CPU</th>
-                  <th>内存</th>
-                  <th>带宽</th>
-                  <th>远程端口</th>
-                  <th>地区</th>
-                  <th>到期时间</th>
-                  <th>即将到期</th>
-                  <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp操作</th>
-                </tr>
-              </thead>
-              <tbody>
-              {% for server in servers %}
-                <tr>
-                  <td>{{ server.roles }}</td>
-                  <td>{{ server.usage }}</td>
-                  <td>{{ server.pub_ipaddress }}</td>
-                  <td>{{ server.private_ipaddress }}</td>
-                  <td>{{ server.customer }}</td>
-                  <td>{{ server.password }}</td>
-                  <td>{{ server.cpu }}</td>
-                  <td>{{ server.mem }}</td>
-                  <td>{{ server.bandwidth }}</td>
-                  <td>{{ server.port }}</td>
-                  <td>{{ server.area }}</td>
-                  <td>{{ server.expiration_time }}</td>
-                    {% if server.is_expiration %}
-                    <td>否</td>
-                    {% else %}
-                    <td>是</td>
-                    {% endif %}
-                  <td><a  class="btn btn-primary btn-xs"  href="{% url 'cmdb:edit_server' server.id %}">编辑</a>
+        <div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>角色</th>
+                        <th>用途</th>
+                        <th>公网</th>
+                        <th>私网</th>
+                        <th>月费用</th>
+                        <th>密码</th>
+                        <th>CPU</th>
+                        <th>内存</th>
+                        <th>带宽</th>
+                        <th>远程端口</th>
+                        <th>地区</th>
+                        <th>到期时间</th>
+                        <th>即将到期</th>
+                        <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for server in servers %}
+                        <tr>
+                            <td>{{ server.roles }}</td>
+                            <td>{{ server.usage }}</td>
+                            <td>{{ server.pub_ipaddress }}</td>
+                            <td>{{ server.private_ipaddress }}</td>
+                            <td>{{ server.customer }}</td>
+                            <td>{{ server.password }}</td>
+                            <td>{{ server.cpu }}</td>
+                            <td>{{ server.mem }}</td>
+                            <td>{{ server.bandwidth }}</td>
+                            <td>{{ server.port }}</td>
+                            <td>{{ server.area }}</td>
+                            <td>{{ server.expiration_time }}</td>
+                            {% if server.is_expiration %}
+                                <td>否</td>
+                            {% else %}
+                                <td>是</td>
+                            {% endif %}
+                            <td><a class="btn btn-primary btn-xs" href="{% url 'cmdb:edit_server' server.id %}">编辑</a>
 
-                      <a  class="btn btn-danger btn-xs"  href="{% url 'cmdb:del_server' server.id %}">删除</a>
-                  </td>
-                </tr>
-              {% endfor %}
-              <tr>
-                  <td><a  class="btn btn-success"  href="{% url 'cmdb:new_server'%}">增加</a></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+                                <a class="btn btn-danger btn-xs" href="{% url 'cmdb:del_server' server.id %}">删除</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td><a class="btn btn-success" href="{% url 'cmdb:new_server' %}">增加</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
-{% endblock content %}
+</div>
+</body>
+</html>
