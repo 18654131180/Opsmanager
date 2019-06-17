@@ -25,7 +25,7 @@ class Group(models.Model):
 
 class Company(models.Model):
     """定义公司名称"""
-    name=models.CharField(max_length=25,verbose_name='公司名称')
+    name=models.CharField(max_length=25,verbose_name='公司名称',unique=True)
     contactsusr=models.CharField(max_length=10,verbose_name='联系人')
     phonenumber=models.IntegerField(verbose_name='联系人手机号')
     projectname=models.CharField(max_length=20,verbose_name='项目名')
@@ -60,7 +60,7 @@ class Servers(models.Model):
 #定义一个方法，判断数据库日期比当前日期是否在5天以内，在模板里可以直接以.is_expiration做条件判断
     @property
     def is_expiration(self):
-        if (parse(str(self.expiration_time)) - parse(daytime)).days >= 5:
+        if (parse(str(self.expiration_time)) - parse(daytime)).days >= 7:
             return True
     class Meta:
         verbose_name_plural = "服务器"
