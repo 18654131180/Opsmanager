@@ -1,11 +1,11 @@
 {% extends "ops/base.html" %}
 {% load bootstrap3 %}
 {% block content %}
-<p><a href="{%url 'cmdb:index'%}">{{company.name}}</a></p>
-<p>编辑公司</p>
-<form action="{%url 'cmdb:edit_company' company.id%}" method="post">
-	{% csrf_token%}
-	{% bootstrap_form form %}
-	<button name='submit'>保存</button>
-</form>
+    <h2><a href="{%url 'cmdb:index'%}">{{company.name}}</a></h2>
+    <form action="{%url 'cmdb:edit_company' company.id%}" method="post">
+        {% csrf_token%}
+	    {% bootstrap_form form %}
+	    <button name='submit'>保存</button>
+    </form>
+
 {% endblock content %}
