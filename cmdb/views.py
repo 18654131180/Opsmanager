@@ -121,7 +121,3 @@ def del_server(request, server_id):
     return render(request, 'cmdb/server.html', context)
 
 
-@login_required
-def deploy(request):
-    if request.method == "GET":
-        return render()

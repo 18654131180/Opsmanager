@@ -8,3 +8,7 @@ from .models import  *
 def index(request):
     return render(request,'ops/index.html')
 
+@login_required
+def deploy(request):
+    if request.method == "GET":
+        return render()
