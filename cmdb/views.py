@@ -6,6 +6,8 @@ from .models import *
 from .forms import *
 from dateutil.parser import parse
 import time
+from django.http import JsonResponse
+
 daytime=time.strftime('%Y-%m-%d',time.localtime(time.time()))
 
 @login_required
@@ -117,3 +119,9 @@ def del_server(request, server_id):
         return HttpResponseRedirect(reverse('cmdb:server'))
     context = {"delserver": delserver}
     return render(request, 'cmdb/server.html', context)
+
+
+@login_required
+def deploy(request):
+    if request.method == "GET":
+        return render()
