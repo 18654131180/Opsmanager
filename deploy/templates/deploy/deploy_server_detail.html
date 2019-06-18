@@ -48,6 +48,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation"><a href="{% url 'cmdb:company' %}">公司管理</a></li>
                 <li role="presentation" class="active"><a href="{% url 'cmdb:server' %}">服务器管理</a></li>
+                <li role="presentation"><a href="#">部署系统</a></li>
             </ul>
         </div>
         <div class="text-right"><a class="btn btn-success" href="{% url 'cmdb:new_company' %}">>>增加</a></div>
@@ -57,19 +58,8 @@
                     <thead>
                     <tr>
                         <th>所属公司</th>
-                        <th>角色</th>
                         <th>用途</th>
                         <th>公网</th>
-                        <th>私网</th>
-                        <th>月费用</th>
-                        <th>密码</th>
-                        <th>CPU</th>
-                        <th>内存</th>
-                        <th>带宽</th>
-                        <th>远程端口</th>
-                        <th>地区</th>
-                        <th>到期时间</th>
-                        <th>即将到期</th>
                         <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp操作</th>
                     </tr>
                     </thead>
@@ -77,26 +67,10 @@
                     {% for server in servers %}
                         <tr>
                             <td>{{ server.company.name }}</td>
-                            <td>{{ server.roles }}</td>
                             <td>{{ server.usage }}</td>
                             <td>{{ server.pub_ipaddress }}</td>
-                            <td>{{ server.private_ipaddress }}</td>
-                            <td>{{ server.customer }}</td>
-                            <td>{{ server.password }}</td>
-                            <td>{{ server.cpu }}</td>
-                            <td>{{ server.mem }}</td>
-                            <td>{{ server.bandwidth }}</td>
-                            <td>{{ server.port }}</td>
-                            <td>{{ server.area }}</td>
-                            <td>{{ server.expiration_time }}</td>
-                            {% if server.is_expiration %}
-                                <td>否</td>
-                            {% else %}
-                                <td>是</td>
-                            {% endif %}
                             <td><a class="btn btn-primary btn-xs" href="{% url 'cmdb:edit_server' server.id %}">编辑</a>
-
-                                <a class="btn btn-danger btn-xs" href="{% url 'cmdb:del_server' server.id %}">删除</a>
+                                <a class="btn btn-danger btn-xs" href="#">发布</a>
                             </td>
                         </tr>
                     {% endfor %}

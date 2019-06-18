@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ops',
     'cmdb',
     'users',
+    'deploy',
     'bootstrap3',
 ]
 

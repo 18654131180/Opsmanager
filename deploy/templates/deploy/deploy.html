@@ -24,7 +24,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'ops:deploy' %}">部署中心</a></li>
+                <li class="active"><a href="{% url 'cmdb:index' %}">CMDB</a></li>
+                <li class="active"><a href="{% url 'deploy:index' %}">部署中心</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <!--如果用户完成登录,此方法是django自带的认证类方法 -->
@@ -81,7 +82,7 @@
                             <td>{{ company.balance }}</td>
                             <td>{{ company.Cspname }}</td>
                             <td><a class="btn btn-primary btn-xs" href="{% url 'cmdb:edit_company' company.id %}">编辑</a>
-                                <a class="btn btn-info btn-xs" href="{% url 'cmdb:show_company' company.id %}">详情</a>
+                                <a class="btn btn-info btn-xs" href="{% url 'deploy:detail_company' company.id %}">服务器列表</a>
                                 <a class="btn btn-danger btn-xs" href="{% url 'cmdb:del_company' company.id %}">删除</a>
                             </td>
                         </tr>
