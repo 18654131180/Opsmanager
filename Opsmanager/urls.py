@@ -20,6 +20,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^users/',include('users.urls',namespace='users')),
     url(r'^cmdb/',include('cmdb.urls',namespace='cmdb')),
-    url(r'^deploy/',include('cmdb.urls',namespace='deploy')),
+    url(r'^deploy/',include('deploy.urls',namespace='deploy')),
     url(r'',include('ops.urls',namespace='ops'))
 ]
