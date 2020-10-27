@@ -3,7 +3,7 @@ django-bootstrap3==11.0.0
 asn1crypto==0.24.0
 bcrypt==3.1.6
 cffi==1.12.3
-cryptography==2.7
+cryptography==3.2
 Django==1.11.21
 django-bootstrap3==11.0.0
 Fabric3==1.14.post1
